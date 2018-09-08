@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
-import store from './store';
+import store from '../redux/store/store';
 import SignIn from './auth/SignIn/SignIn';
 import SignUp from './auth/SignUp/SignUp';
 import Profile from './profile/Profile/Profile';
