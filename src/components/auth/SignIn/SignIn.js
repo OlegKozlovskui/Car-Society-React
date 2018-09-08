@@ -14,11 +14,12 @@ class SignIn extends Component {
   };
 
   render() {
+    const { isEmailLogin } = this.state;
     return (
       <div className="signin">
         <div className="signin-box">
           <h4>Sign In or <Link to="/signup">Sign Up</Link></h4>
-          {!this.state.isEmailLogin ? (
+          {!isEmailLogin ? (
           <Fragment>
             <button type="button" className="btn facebook-btn">
               <FontAwesomeIcon icon={['fab', 'facebook-f']} />

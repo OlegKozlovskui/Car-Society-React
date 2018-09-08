@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-class SignIn extends Component {
-  state = {};
-
+class Profile extends Component {
+	state = {};
+	
   render() {
     return (
       <div className="profile">
@@ -12,4 +12,6 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default Profile;
+
+
