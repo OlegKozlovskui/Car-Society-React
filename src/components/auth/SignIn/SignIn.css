@@ -1,0 +1,72 @@
+.signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("/img/bg.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.signin:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.signin-box {
+  max-width: 240px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.signin-box h4 {
+  text-align: center;
+}
+
+.signin-box .btn {
+  width: 100%;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.signin-box .btn svg {
+  margin-right: 10px;
+}
+
+.facebook-btn {
+  background: #3b5998;
+}
+
+.facebook-btn:hover {
+  background: #4264aa;
+}
+
+.google-btn {
+  background: #dd4b39;
+}
+
+.google-btn:hover {
+  background: #e15f4f;
+}
+
+.col-form-label {
+  font-size: 12px;
+  padding: 0;
+  display: block;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.signin-btn {
+  max-width: 110px;
+  margin-top: 8px;
+}
