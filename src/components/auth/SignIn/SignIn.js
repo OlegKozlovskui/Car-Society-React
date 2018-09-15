@@ -1,17 +1,34 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './SignIn.css';
+import { loginUser } from '../../../redux/actionts/authActions';
 
 class SignIn extends Component {
   state = {
+    email: '',
+    password: '',
     isEmailLogin: false,
   };
+	
+	handleChange = (e) => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
   handleEmailLogin = () => {
     this.setState({ isEmailLogin: true });
   };
+	
+	handleSubmit = (e) => {
+	  const { email, password } = this.state;
+		e.preventDefault();
+		this.props.loginUser({
+			email,
+			password
+    });
+	};
 
   render() {
     const { isEmailLogin } = this.state;
@@ -35,16 +52,32 @@ class SignIn extends Component {
             </button>
           </Fragment>
           ) : (
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label className="col-form-label" htmlFor="inputDefault">Email</label>
-              <input type="text" className="form-control" placeholder="Email" id="inputDefault" />
+	            <label className="col-form-label" htmlFor="email">Email</label>
+	            <input
+		            id="email"
+		            type="email"
+		            name="email"
+		            value={this.state.email}
+		            onChange={this.handleChange}
+		            className="form-control"
+		            placeholder="Email"
+	            />
             </div>
             <div className="form-group">
-              <label className="col-form-label" htmlFor="inputDefault">Password</label>
-              <input type="text" className="form-control" placeholder="Password" id="inputDefault" />
+	            <label className="col-form-label" htmlFor="password">Password</label>
+	            <input
+		            id="password"
+		            type="password"
+		            name="password"
+		            value={this.state.password}
+		            onChange={this.handleChange}
+		            className="form-control"
+		            placeholder="Password"
+	            />
             </div>
-            <button type="button" className="btn btn-secondary signin-btn">
+            <button type="submit" className="btn btn-secondary signin-btn">
               Sign In
             </button>
           </form>
@@ -55,4 +88,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default connect(null, { loginUser })(SignIn);

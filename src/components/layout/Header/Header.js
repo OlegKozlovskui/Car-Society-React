@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
+import { logout } from '../../../redux/actionts/authActions';
 
-const Header = ({ profile: { user } }) => (
+const Header = ({ profile: { user }, logout }) => (
 	<header>
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<Link className="navbar-brand" to="/profile">CarSociety</Link>
@@ -18,7 +19,7 @@ const Header = ({ profile: { user } }) => (
 						<Link className="nav-link" to="/profile">{user && user.firstName} {user && user.lastName}</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="nav-link" to="/">Log Out</Link>
+						<Link className="nav-link" to="/" onClick={logout} >Log Out</Link>
 					</li>
 				</ul>
 			</div>
@@ -30,4 +31,4 @@ const mapStateToProps = state => ({
 	profile: state.profile.profile,
 });
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps, { logout })(withRouter(Header));

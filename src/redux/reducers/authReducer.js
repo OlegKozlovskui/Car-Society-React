@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from '../types/types';
+import { SET_CURRENT_USER, USER_LOGGED_OUT } from '../types/types';
 
 const initialState = {
 	isAuthenticated: false,
@@ -12,6 +12,12 @@ export default function(state = initialState, action) {
 				...state,
 				isAuthenticated: action.payload,
 				user: action.payload
+			};
+		case USER_LOGGED_OUT:
+			return {
+				...state,
+				isAuthenticated: false,
+				user: {}
 			};
 		default:
 			return state;
