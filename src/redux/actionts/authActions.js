@@ -1,20 +1,27 @@
-import { CREATE_USER, LOGIN_USER, SET_CURRENT_USER, LOGOUT_USER } from '../types/types';
+import { SIGN_UP, SIGN_IN, SIGN_OUT, GOOGLE_LOGIN, FACEBOOK_LOGIN } from '../types/types';
 
-export const createUser = user => ({
-	type: CREATE_USER,
+export const signUp = user => ({
+	type: SIGN_UP,
 	user
 });
 
-export const loginUser = credentials => ({
-	type: LOGIN_USER,
+export const signIn = credentials => ({
+	type: SIGN_IN,
 	credentials
 });
 
-export const setCurrentUser = user => ({
-	type: SET_CURRENT_USER,
-	payload: user
+export const googleLogin = credentials => ({
+	type: GOOGLE_LOGIN,
+	credentials
 });
 
-export const logout = () => ({
-	type: LOGOUT_USER,
+export const facebookLogin = credentials => ({
+	type: FACEBOOK_LOGIN,
+	credentials
 });
+
+export const signOut = () => ({
+	type: SIGN_OUT,
+});
+
+

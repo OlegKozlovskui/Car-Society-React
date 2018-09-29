@@ -1,18 +1,18 @@
-import { SET_CURRENT_USER, USER_SIGNED_OUT } from '../types/types';
+import { SET_CURRENT_USER, FETCH_CURRENT_USER_SUCCESS } from '../types/types';
 
 const initialState = {
-	isAuthenticated: false,
+	userInfo: {}
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case SET_CURRENT_USER:
 			return {
-				isAuthenticated: true,
+				userInfo: action.payload
 			};
-		case USER_SIGNED_OUT:
+		case FETCH_CURRENT_USER_SUCCESS:
 			return {
-				isAuthenticated: false,
+				userInfo: action.payload
 			};
 		default:
 			return state;

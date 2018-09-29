@@ -1,8 +1,10 @@
 import React from 'react';
 
-const UserInfo = ({ profile }) => (
+const UserInfo = ({ userInfo: { firstName, lastName } }) => (
 	<div className="card">
-		<h3 className="card-header">{profile.user && profile.user.firstName} {profile.user && profile.user.lastName}</h3>
+		<h3 className="card-header">
+			{firstName} {lastName}
+			</h3>
 		<img src="http://i.infocar.ua/i/6/114309/650x.jpg"
 		     alt="Card image" />
 		<div className="card-body">

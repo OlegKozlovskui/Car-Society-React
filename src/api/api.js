@@ -1,14 +1,20 @@
-import axios from "axios";
+import axios from 'axios';
+
+import config from '../config/config';
 
 export default {
-	user: {
+	auth: {
 		signup: user =>
-			axios.post("http://localhost:5000/api/users/register", user).then(res => res.data),
+			axios.post(`${config.API_URL}auth/signup`, user).then(res => res.data),
 		signin: credentials =>
-			axios.post("http://localhost:5000/api/users/login", credentials).then(res => res.data),
+			axios.post(`${config.API_URL}auth/signin`, credentials).then(res => res.data),
+		google: credentials =>
+			axios.post(`${config.API_URL}auth/oauth/google`, credentials).then(res => res.data),
+		facebook: credentials =>
+			axios.post(`${config.API_URL}auth/oauth/facebook`, credentials).then(res => res.data),
 	},
-	profile: {
-		fetchUserProfile: () =>
-			axios.get("http://localhost:5000/api/profile").then(res => res.data),
+	user: {
+		fetchCurrentUser: () =>
+			axios.get(`${config.API_URL}users/current`).then(res => res.data),
 	}
 }

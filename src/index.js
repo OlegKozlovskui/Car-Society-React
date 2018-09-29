@@ -9,15 +9,17 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import './index.css';
 import store from './redux/store/store';
 import App from './components/App';
-import { setCurrentUser } from './redux/actionts/authActions';
+import { setCurrentUser, fetchCurrentUser } from './redux/actionts/userActions';
 import setAuthToken from './utils/setAuthToken';
 
 library.add(fab, faEnvelope);
 
 if (localStorage.accessToken) {
-	setAuthToken(localStorage.accessToken);
 	const { userId } = jwt_decode(localStorage.accessToken);
+	
+	setAuthToken(localStorage.accessToken);
 	store.dispatch(setCurrentUser({ userId }));
+	store.dispatch(fetchCurrentUser());
 }
 
 ReactDOM.render(

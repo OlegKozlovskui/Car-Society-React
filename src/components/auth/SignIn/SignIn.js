@@ -2,9 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import './SignIn.css';
-import { loginUser } from '../../../redux/actionts/authActions';
+import config from '../../../config/config';
+import { signIn, googleLogin, facebookLogin } from '../../../redux/actionts/authActions';
 
 class SignIn extends Component {
   state = {
@@ -21,10 +24,27 @@ class SignIn extends Component {
     this.setState({ isEmailLogin: true });
   };
 	
+	googleResponse = (e) => {
+		const payload = {
+			access_token: e.accessToken
+		};
+		
+		this.props.googleLogin(payload);
+	};
+	
+	facebookResponse = (e) => {
+		const payload = {
+			access_token: e.accessToken
+		};
+		
+		this.props.facebookLogin(payload);
+	};
+	
 	handleSubmit = (e) => {
 	  const { email, password } = this.state;
 		e.preventDefault();
-		this.props.loginUser({
+		
+		this.props.signIn({
 			email,
 			password
     });
@@ -38,14 +58,26 @@ class SignIn extends Component {
           <h4>Sign In or <Link to="/signup">Sign Up</Link></h4>
           {!isEmailLogin ? (
           <Fragment>
-            <button type="button" className="btn facebook-btn">
-              <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-              Facebook
-            </button>
-            <button type="button" className="btn google-btn">
-              <FontAwesomeIcon icon={['fab', 'google-plus-g']} />
-              Google
-            </button>
+	          <FacebookLogin
+		          appId={config.FACEBOOK_APP_ID}
+		          callback={this.facebookResponse}
+		          render={renderProps  => (
+			          <button type="button" className="btn facebook-btn" onClick={renderProps.onClick}>
+				          <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+				          Facebook
+			          </button>
+		          )}
+	          />
+	          <GoogleLogin
+		          clientId={config.GOOGLE_CLIENT_ID}
+		          buttonText="Login"
+		          className="btn google-btn"
+		          onSuccess={this.googleResponse}
+		          onFailure={this.googleResponse}
+	          >
+		          <FontAwesomeIcon icon={['fab', 'google-plus-g']} />
+		          Google
+	          </GoogleLogin>
             <button type="button" className="btn btn-secondary" onClick={this.handleEmailLogin}>
               <FontAwesomeIcon icon='envelope' />
               Email
@@ -88,4 +120,10 @@ class SignIn extends Component {
   }
 }
 
-export default connect(null, { loginUser })(SignIn);
+const mapDispatchToProps = {
+	signIn,
+	googleLogin,
+	facebookLogin
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);

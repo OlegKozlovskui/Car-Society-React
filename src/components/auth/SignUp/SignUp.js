@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './SignUp.css';
-import { createUser } from '../../../redux/actionts/authActions';
+import { signUp } from '../../../redux/actionts/authActions';
 
 class SignUp extends Component {
   state = {
@@ -19,7 +19,7 @@ class SignUp extends Component {
 	
 	handleSubmit = (e) => {
 	  e.preventDefault();
-		this.props.createUser(this.state);
+		this.props.signUp(this.state);
 	};
   
   render() {
@@ -86,4 +86,8 @@ class SignUp extends Component {
   }
 }
 
-export default connect(null, { createUser })(SignUp);
+const mapDispatchToProps = {
+	signUp,
+};
+
+export default connect(null, mapDispatchToProps)(SignUp);
