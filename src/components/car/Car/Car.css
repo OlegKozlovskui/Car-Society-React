@@ -1,0 +1,7 @@
+.car-card {
+  margin-bottom: 30px;
+}
+
+.car-card, .car-card .card-body  {
+  padding: 0;
+}

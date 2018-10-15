@@ -13,6 +13,15 @@ const Header = ({ userInfo: { firstName, lastName }, signOut }) => (
 					<li className="nav-item">
 						<Link className="nav-link" to="/profile">My Profile</Link>
 					</li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/new-brand">New Brand</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/new-car">New Car</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/all-cars">All Cars</Link>
+          </li>
 				</ul>
 				<ul className="navbar-nav">
 					<li className="nav-item">
